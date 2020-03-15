@@ -1,0 +1,1 @@
+This my second project as part of The Odin Project. This is a command-line based version of the game "Rock Paper Scissors". I will be using JavaScript to complete this project.
