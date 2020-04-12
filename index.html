@@ -28,7 +28,7 @@
         }
 
         function playerSelection() {
-            const userInput = prompt("Rock, paper, or scissors?");
+            let userInput = prompt("Rock, paper, or scissors?");
             return userInput.toLowerCase();
         }
 
@@ -43,32 +43,32 @@
             }
 
             else if (playerSelection == "rock" && computerSelection == "paper") {
-                result = "You lose, paper covers rock.";
+                result = "Sadly, you lost. Paper covered that rock like a blanket.";
                 computerScore++;
             }
 
             else if (playerSelection == "rock" && computerSelection == "scissors") {
-                result = "You win, rock smashes scissors!";
+                result = "You won, rock smashed scissors!";
                 playerScore++;
             }
 
             else if (playerSelection == "paper" && computerSelection == "rock") {
-                result = "You win, paper covers rock!";
+                result = "You won, paper covered that rock right up!";
                 playerScore++;
             }
 
             else if (playerSelection == "paper" && computerSelection == "scissors") {
-                result = "You lose, scissors cut that paper right up.";
+                result = "Sadly, you lost. Scissors cut that paper right up.";
                 computerScore++;
             }
 
             else if (playerSelection == "scissors" && computerSelection == "rock") {
-                result = "You lose, rock smashes scissors.";
+                result = "Sadly, you lost. Rock smashed your scissors.";
                 computerScore++;
             }
 
             else if (playerSelection == "scissors" && computerSelection == "paper") {
-                result = "You win, scissors cut that paper right up!";
+                result = "You won, scissors cut that paper right up!";
                 playerScore++;
             }
 
@@ -77,16 +77,36 @@
 
         function game() {
             const playerName = prompt("Hello there. What is your name?");
-            let computerInt = generateRandomInt(1,3);
-            let computerSelection = computerPlay(computerInt);
-            let userPlayerSelection = playerSelection();
-            let [gameResult, playerScore, computerScore] = playRound(userPlayerSelection, computerSelection);
-            console.log(gameResult);
-            console.log(playerName + "'s score is " + playerScore + " and the computer's score is " + computerScore + ".")
+
+            let numRounds = 5;
+            let playerGameScore = 0;
+            let computerGameScore = 0;
+            
+            while (numRounds > 0) {
+                let computerInt = generateRandomInt(1,3);
+                let computerSelection = computerPlay(computerInt);
+                let userPlayerSelection = playerSelection();
+                let [gameResult, playerScore, computerScore] = playRound(userPlayerSelection, computerSelection);
+                console.log(gameResult);
+                numRounds--;
+                playerGameScore += playerScore;
+                computerGameScore += computerScore;
+            }
+
+            if (playerGameScore > computerGameScore) {
+                console.log("Congrats, you won " + playerGameScore + " to " + computerGameScore + "!");
+            }
+
+            else if (playerGameScore < computerGameScore) {
+                console.log("Sorry, you lost " + computerGameScore + " to " + playerGameScore + ".");
+            }
+
+            else {
+                console.log("It's a tie folks.")
+            }
         }
 
         game();
-
 
       </script>
 
